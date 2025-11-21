@@ -1,0 +1,36 @@
+import React from 'react'
+import { View, Text, Button, Alert, StyleSheet } from 'react-native'
+
+const App = () => {
+  const fetchData = async () => {
+    try {
+      const res = await fetch('https://registry.dog/api/v1')
+      const data = await res.json()
+      console.log(data)
+      Alert.alert('Success', 'Data fetched — check console')
+    } catch (err) {
+      console.error(err)
+      Alert.alert('Error', 'Failed to fetch data')
+    }
+  }
+
+  return (
+    <View style={styles.parentStyle}>
+      <View style={{ margin: 20 }}>
+        <Button title="Fetch Data" onPress={fetchData} />
+      </View>
+
+      <View style={[styles.subparentStyle, styles.getRefRed]}>
+        <Text>Layout 1</Text>
+      </View>
+
+      <View style={[styles.subparentStyle, styles.getRefRed]}>
+        <Text>Layout 2</Text>
+      </View>
+
+      <View style={[styles.subparentStyle, styles.getRefRed]}>
+        <Text>Layout 3</Text>
+      </View>
+    </View>
+  )
+}
